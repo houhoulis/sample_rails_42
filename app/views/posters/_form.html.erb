@@ -16,8 +16,12 @@
     <%= f.text_field :slogan %>
   </div>
   <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.label :name, "Candidate Name" %><br>
+    <% if @proposed_name %>
+      <%= f.text_field :name, value: @proposed_name.to_s %>
+    <% else %>
+      <%= f.text_field :name %>
+    <% end %>
   </div>
   <div class="actions">
     <%= f.submit %>

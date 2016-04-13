@@ -15,6 +15,7 @@ class PostersController < ApplicationController
   # GET /posters/new
   def new
     @poster = Poster.new
+    @proposed_name = User.find_by_id(params[:user_id]).try(:name) if params[:user_id].present?
   end
 
   # GET /posters/1/edit
