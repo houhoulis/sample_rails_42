@@ -14,6 +14,7 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
+    @previous_user = User.find_by_id(params[:previous_id]) if params[:previous_id].present?
     @user = User.new
   end
 
@@ -28,7 +29,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to new_user_with_previous_id_path(@user.id), notice: 'User success. Have another?' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
